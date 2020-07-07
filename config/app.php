@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Shanghai',
 
     /*
     |--------------------------------------------------------------------------
@@ -79,8 +79,9 @@ return [
     | to any of the locales which will be supported by the application.
     |
     */
+    //对应的是resource下的lang/zh-CN文件
 
-    'locale' => 'en',
+    'locale' => 'zh-CN',
 
     /*
     |--------------------------------------------------------------------------
@@ -165,6 +166,8 @@ return [
         /*
          * Package Service Providers...
          */
+        //代码提示
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
         /*
          * Application Service Providers...
