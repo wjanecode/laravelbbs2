@@ -21,13 +21,17 @@
         <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">登录</a></li>
         <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">注册</a></li>
       @else
-        <div class="dropdown">
+        <div class="dropdown ">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{ Auth::user()->name }}
           </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div class="dropdown-menu  " aria-labelledby="dropdownMenuButton">
             <a class="nav-link" href="#">个人中心</a>
-            <a class="dropdown-item" href="#">注销</a>
+            <form action="{{ route('logout') }}" method="POST">
+              {{ csrf_field() }}
+              <button class="dropdown-item" type="submit" >注销</button>
+            </form>
+
           </div>
         </div>
       @endif
