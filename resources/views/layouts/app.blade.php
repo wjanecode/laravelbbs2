@@ -11,7 +11,7 @@
   {{--css样式,mix()会根据webpack.mix.js来配置css的链接,这里主要是为了解决浏览器缓存问题--}}
   <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
-  @yield('js')
+
 
 </head>
 <body>
@@ -32,4 +32,5 @@
 </div>
 </body>
 <script src="{{ mix('js/app.js') }}"></script>
+@yield('js')
 </html>

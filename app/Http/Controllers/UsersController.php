@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Handlers\ImageUploadHandler;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -88,6 +89,15 @@ class UsersController extends Controller
             $user->password = $password;
         }
 
+        //判断有没有头像文件,对上传的头像进行保存
+        if ($avatar = $request->file('avatar')){
+            //对图片进行处理
+            $uploader = new ImageUploadHandler();
+            $avatar = $uploader->upload($avatar,'avatars','avatar',1000);
+            //赋值
+            $user->avatar = $avatar['path'];
+        }
+
         $user->save();
 
         session()->flash('success','信息保存成功');
@@ -104,7 +114,6 @@ class UsersController extends Controller
     public function destroy(User $user)
     {
         //
-        $user->destroy();
 
     }
 }
