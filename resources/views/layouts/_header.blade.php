@@ -25,8 +25,10 @@
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{ Auth::user()->name }}
           </button>
-          <div class="dropdown-menu  " aria-labelledby="dropdownMenuButton">
-            <a class="nav-link" href="#">个人中心</a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+            <a class="nav-link text-dark" href="{{ route('users.show',Auth::user()->id) }}" >个人中心</a>
+            <a class="nav-link text-dark" href="{{ route('users.edit',Auth::user()->id) }}" >修改资料</a>
             <form action="{{ route('logout') }}" method="POST">
               {{ csrf_field() }}
               <button class="dropdown-item" type="submit" >注销</button>

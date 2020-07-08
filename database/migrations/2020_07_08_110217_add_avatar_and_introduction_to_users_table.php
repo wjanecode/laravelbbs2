@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterNameUniqueAtUsersTable extends Migration
+class AddAvatarAndIntroductionToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class AlterNameUniqueAtUsersTable extends Migration
      */
     public function up()
     {
-        //
         Schema::table('users', function (Blueprint $table) {
-
-            $table->unique('name');
-            //$table->index('name');
+            //
+            $table->string('avatar')->nullable();
+            $table->string('introduction')->nullable();
         });
     }
 
@@ -28,11 +27,9 @@ class AlterNameUniqueAtUsersTable extends Migration
      */
     public function down()
     {
-        //
         Schema::table('users', function (Blueprint $table) {
-
-            $table->dropUnique('name');
-
+            //
+            $table->dropColumn('avatar','introduction');
         });
     }
 }
