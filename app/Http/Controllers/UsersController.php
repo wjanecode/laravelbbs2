@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
+    public function __construct(  ) {
+        //未登录用户只能访问show方法
+        $this->middleware('auth',['except' => ['show']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -65,6 +69,8 @@ class UsersController extends Controller
     public function edit(User $user)
     {
         //
+        //检查是否已授权,当前用户已自动传参进去,非本人不能编辑
+        $this->authorize('update',$user);
         return view('users.create_and_edit',compact('user'));
     }
 
@@ -79,6 +85,9 @@ class UsersController extends Controller
     {
         //
         $user = User::find($id);
+        //检查是否已授权,当前用户已自动传参进去,非本人不能编辑
+        $this->authorize('update',$user);
+
         $user->name = $request->get('name');
         $user->email = $request->get('email');
         $user->introduction = $request->get('introduction');

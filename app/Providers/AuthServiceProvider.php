@@ -13,7 +13,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Model' => 'App\Policies\ModelPolicy',
+
+         //'App\Model' => 'App\Policies\ModelPolicy',
     ];
 
     /**
@@ -23,8 +24,14 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->registerPolicies();
 
-        //
+        $this->registerPolicies();
+        //模型已移动到Models下面,自动注册策略类需要这个
+        // 修改策略自动发现的逻辑,这是因为修改了User.php的位置
+        Gate::guessPolicyNamesUsing(function ($modelClass) {
+            // 动态返回模型对应的策略名称，如：// 'App\Model\User' => 'App\Policies\UserPolicy',
+            return 'App\Policies\\'.class_basename($modelClass).'Policy';
+        });
     }
+
 }
