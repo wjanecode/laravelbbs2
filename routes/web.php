@@ -11,9 +11,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PostsController@index');
 
 //-------------Auth::routes();用户认证相关展开
 // 用户身份验证相关的路由
@@ -39,3 +37,5 @@ Route::resource('users','UsersController');
 
 
 Route::resource('posts', 'PostsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+
+Route::resource('categories', 'CategoriesController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);

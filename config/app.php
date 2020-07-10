@@ -98,7 +98,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Faker Locale
+    | Faker Locale vendor 中有,找Faker
     |--------------------------------------------------------------------------
     |
     | This locale will be used by the Faker PHP library when generating fake
@@ -106,8 +106,8 @@ return [
     | localized telephone numbers, street address information and more.
     |
     */
+    'faker_locale' => 'zh_CN',
 
-    'faker_locale' => 'en_US',
 
     /*
     |--------------------------------------------------------------------------
