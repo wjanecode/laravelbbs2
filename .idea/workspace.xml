@@ -2,18 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b9b73f6-3a87-4fbb-85d6-e4fa506044ea" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/posts/_reply_box.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/posts/_reply_list.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/users/_reply_list.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RepliesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RepliesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Post.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Reply.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Reply.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Policies/PostPolicy.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Policies/PostPolicy.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Policies/ReplyPolicy.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Policies/ReplyPolicy.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/ReplyFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/ReplyFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/posts/_right.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/posts/_right_post_content.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/posts/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/posts/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/posts/_post_list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/posts/_post_list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/posts/_reply_list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/posts/_reply_list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/posts/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/posts/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/_left.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/_left.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/_right.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/_right.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -197,7 +192,7 @@
       <workItem from="1594088421302" duration="44362000" />
       <workItem from="1594335728638" duration="12309000" />
       <workItem from="1594348648723" duration="1509000" />
-      <workItem from="1594350269826" duration="14875000" />
+      <workItem from="1594350269826" duration="17187000" />
     </task>
     <servers />
   </component>

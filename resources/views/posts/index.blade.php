@@ -20,8 +20,7 @@
       {{--帖子列表--}}
       @include('posts._post_list',['post'=>$posts])
 
-      {{--页码,携带当前的order参数--}}
-      {!! $posts->appends(['order'=>request('order')])->render() !!}
+
     </div>
 
   </div>

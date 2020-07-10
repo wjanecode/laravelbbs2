@@ -20,6 +20,8 @@
   </li>
   @endforeach
 
+  {{--分页--}}
+  {{ $posts->appends(request()->except('page'))->render() }}
 </div>
 
 
