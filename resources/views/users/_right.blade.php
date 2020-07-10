@@ -2,8 +2,7 @@
 
 <div class="card">
   <div class="card-body">
-    <h4 class="card-title">Special title treatment</h4>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+   @include('posts._post_list',['posts'=>$user->posts()->with('category','user')->paginate(10)])
+
   </div>
 </div>

@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
+use Illuminate\Support\Facades\Auth;
+use mysql_xdevapi\Session;
 
 class PostsController extends Controller
 {
@@ -16,7 +19,7 @@ class PostsController extends Controller
 
 	public function index()
 	{
-		$posts = Post::paginate();
+		$posts = Post::with('user','category')->paginate();
 		return view('posts.index', compact('posts'));
 	}
 
@@ -27,19 +30,26 @@ class PostsController extends Controller
 
 	public function create(Post $post)
 	{
-		return view('posts.create_and_edit', compact('post'));
+	    $categories = Category::all();
+		return view('posts.create_and_edit', compact('post','categories'));
 	}
 
-	public function store(PostRequest $request)
+	public function store(PostRequest $request,Post $post)
 	{
-		$post = Post::create($request->all());
+
+
+		$post->fill($request->all());
+		$post->user_id = Auth::id();
+		$post->save();
+
 		return redirect()->route('posts.show', $post->id)->with('message', 'Created successfully.');
 	}
 
 	public function edit(Post $post)
 	{
         $this->authorize('update', $post);
-		return view('posts.create_and_edit', compact('post'));
+        $categories = Category::all();
+        return view('posts.create_and_edit', compact('post','categories'));
 	}
 
 	public function update(PostRequest $request, Post $post)
@@ -54,7 +64,7 @@ class PostsController extends Controller
 	{
 		$this->authorize('destroy', $post);
 		$post->delete();
-
-		return redirect()->route('posts.index')->with('message', 'Deleted successfully.');
+        session()->flash('success','删除成功');
+		return redirect()->route('users.show',Auth::id())->with('message', 'Deleted successfully.');
 	}
 }

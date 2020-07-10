@@ -9,7 +9,7 @@
       </div>
       {{--右边,发布的帖子,回复--}}
       <div class="col-md-9">
-        @include('users._right')
+        @include('users._right',['user'=>$user])
       </div>
     </div>
 

@@ -5,12 +5,14 @@ html{
 
 }
 body{
-
+  //container 会包边到padding,留出外边距给footer
+  margin-bottom: 70px;
 }
 footer{
   margin-top: 30px;
-  padding-top: 50px;
   position: absolute;
   bottom: 0;
+  height: 70px;
+
 
 }

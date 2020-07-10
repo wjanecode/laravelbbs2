@@ -10933,11 +10933,15 @@ html {
   min-height: 100%;
 }
 
+body {
+  margin-bottom: 70px;
+}
+
 footer {
   margin-top: 30px;
-  padding-top: 50px;
   position: absolute;
   bottom: 0;
+  height: 70px;
 }
 
 /*!
@@ -17039,5 +17043,15 @@ readers do not read off random characters that represent icons */
 .fab {
   font-family: "Font Awesome 5 Brands";
   font-weight: 400;
+}
+
+.list-avatar {
+  width: 40px;
+  max-height: 100px;
+}
+
+.list {
+  margin-top: 5px;
+  border-bottom: #cbc4b9 solid 1px;
 }
 
