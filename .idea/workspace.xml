@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b9b73f6-3a87-4fbb-85d6-e4fa506044ea" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/resources/views/users/_right.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/_right.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/ReplyFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/ReplyFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/RepliesTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/RepliesTableSeeder.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -186,7 +188,7 @@
       <workItem from="1594088421302" duration="44362000" />
       <workItem from="1594335728638" duration="12309000" />
       <workItem from="1594348648723" duration="1509000" />
-      <workItem from="1594350269826" duration="10004000" />
+      <workItem from="1594350269826" duration="10861000" />
     </task>
     <servers />
   </component>
