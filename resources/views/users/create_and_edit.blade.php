@@ -60,7 +60,7 @@
               <div class="form-group row">
                 <label for="introduction" class="col-md-4 col-form-label text-md-right">头像</label>
                 <div class="col-md-6">
-                  <img id="showPic" src="{{ asset($user->avatar) }}" alt="" class="col-6 " style="padding-left: 0" >
+                  <img id="showPic" src="{{ asset($user->avatar) }}" alt=""  style="padding-left: 0;max-height: 100px" >
                   <input type="file" id="addPic" name="avatar"  class="@error('introduction') is-invalid @enderror">
 
                   @error('avatar')

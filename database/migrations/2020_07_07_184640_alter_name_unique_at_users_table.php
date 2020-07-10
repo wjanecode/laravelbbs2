@@ -31,7 +31,7 @@ class AlterNameUniqueAtUsersTable extends Migration
         //
         Schema::table('users', function (Blueprint $table) {
 
-            $table->dropUnique('name');
+          //  $table->dropUnique('name');
 
         });
     }

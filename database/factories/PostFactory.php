@@ -12,9 +12,9 @@ $factory->define(App\Models\Post::class, function (Faker $faker) {
     return [
         // 'name' => $faker->name,
         //
-        'title' =>  $faker->title,
+        'title' =>  $faker->sentence,
         'body'  =>  $faker->paragraphs(5,true),
-
-
+        'reply_count' => random_int(1,20),
+        'view_count'  => random_int(20,100),
     ];
 });
