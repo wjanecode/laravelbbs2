@@ -10928,14 +10928,16 @@ a.text-dark:focus {
   }
 }
 
-body {
+html {
+  position: relative;
   min-height: 100%;
 }
 
 footer {
+  margin-top: 30px;
+  padding-top: 50px;
   position: absolute;
   bottom: 0;
-  height: 60px;
 }
 
 /*!

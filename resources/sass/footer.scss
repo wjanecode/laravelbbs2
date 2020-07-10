@@ -1,12 +1,16 @@
 //Footer样式,固定位置
+html{
+  position: relative;
+  min-height: 100%;
 
+}
 body{
 
-  min-height: 100%;
 }
 footer{
-
+  margin-top: 30px;
+  padding-top: 50px;
   position: absolute;
   bottom: 0;
-  height: 60px;
+
 }
