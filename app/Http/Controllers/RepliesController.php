@@ -33,7 +33,8 @@ class RepliesController extends Controller
 	public function store(ReplyRequest $request)
 	{
 		$reply = Reply::create($request->all());
-		return redirect()->route('replies.show', $reply->id)->with('message', 'Created successfully.');
+		session()->flash('success','回复成功');
+		return redirect()->back()->with('message', 'Created successfully.');
 	}
 
 	public function edit(Reply $reply)
@@ -54,7 +55,7 @@ class RepliesController extends Controller
 	{
 		$this->authorize('destroy', $reply);
 		$reply->delete();
-
-		return redirect()->route('replies.index')->with('message', 'Deleted successfully.');
+        session()->flash('success','删除成功');
+		return redirect()->back()->with('message', 'Deleted successfully.');
 	}
 }

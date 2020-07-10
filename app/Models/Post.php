@@ -14,6 +14,10 @@ class Post extends Model
         return $this->belongsTo(Category::class,'category_id');
     }
 
+    public function replies(  ) {
+        return $this->hasMany(Reply::class,'post_id');
+    }
+
     public function scopeWithOrder($query,$order) {
 
         //根据不同order来分配不同排序

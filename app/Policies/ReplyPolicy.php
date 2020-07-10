@@ -9,12 +9,13 @@ class ReplyPolicy extends Policy
 {
     public function update(User $user, Reply $reply)
     {
-        // return $reply->user_id == $user->id;
-        return true;
+        return $user->hasModles($reply);
+
     }
 
     public function destroy(User $user, Reply $reply)
     {
-        return true;
+        //回复者或者文章所有者可以删除
+        return $user->hasModles($reply) || $user->hasModles($reply->post);
     }
 }
