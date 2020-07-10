@@ -6,12 +6,14 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item {{active_class(if_route('home'))}}">
         <a class="nav-link" href="/">首页<span class="sr-only">(current)</span></a>
       </li>
+      @foreach(\App\Models\Category::all() as $category)
       <li class="nav-item">
-        <a class="nav-link" href="#">分类</a>
+        <a class="nav-link {{ active_class(if_route('categories.show') && if_route_param('category',$category->id)) }}" href="{{ route('categories.show',$category->id) }}">{{ $category->name }}</a>
       </li>
+      @endforeach
 
     </ul>
 

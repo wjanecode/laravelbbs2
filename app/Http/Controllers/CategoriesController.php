@@ -22,7 +22,9 @@ class CategoriesController extends Controller
 
     public function show(Category $category)
     {
-        return view('categories.show', compact('category'));
+
+        $posts = $category->posts()->with('user','category')->withOrder(\request('order',''))->paginate(10);
+        return view('posts.index', compact('category','posts'));
     }
 
 	public function create(Category $category)
