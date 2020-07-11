@@ -18,11 +18,14 @@
     </ul>
 
     <ul class="navbar-nav navbar-right">
+
       <!-- Authentication Links -->
       @if( !Auth::check())
+
         <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">登录</a></li>
         <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">注册</a></li>
       @else
+        <li class="nav-item"><a href="{{ route('notifications.index') }}" class="nav-link">未读信息 * {{ Auth::user()->unreadNotifications()->count() }}</a></li>
         <div class="dropdown ">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{ Auth::user()->name }}

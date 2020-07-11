@@ -31,5 +31,9 @@ class UserTableSeeder extends Seeder
         })->toArray();
 
         User::insert($users);
+
+        $user = User::find(1);
+        $user->name = 'test';
+        $user->save();
     }
 }

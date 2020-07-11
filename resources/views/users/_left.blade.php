@@ -7,8 +7,10 @@
     <h5>个人简介</h5>
     <p>{{ $user->introduction }}</p>
     <p>加入时间: {{ $user->created_at->diffForHumans() }}</p>
-    <div class="text-center">
+    <div class="text-left">
+      @if( ! if_route('users.show'))
       <a href="{{ route('users.show',$user->id) }}" class="btn btn-primary">个人中心</a>
+      @endif
       <p></p>
 
       @if(Auth::id() === $user->id)

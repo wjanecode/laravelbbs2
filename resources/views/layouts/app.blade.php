@@ -29,7 +29,12 @@
 
   @include('layouts._footer')
 
+  @if (config('app.debug'))
+    @include('sudosu::user-selector')
+  @endif
 </div>
+
+
 </body>
 <script src="{{ mix('js/app.js') }}"></script>
 @yield('js')
