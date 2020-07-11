@@ -18,4 +18,9 @@ class UserObserver
     {
         //
     }
+
+    public function saving( User $user ) {
+        //
+
+    }
 }

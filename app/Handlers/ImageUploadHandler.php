@@ -34,7 +34,7 @@ class ImageUploadHandler{
     public function upload(UploadedFile $file,$folder,$file_prefix,$max_width = false) {
 
         //保存的文件夹
-        $folder_name = 'upload/images/'.$folder.'/'.date('Ym/d',time());
+        $folder_name = '/upload/images/'.$folder.'/'.date('Ym/d',time());
 
         //物理位置,php执行要知道,public文件夹的物理位置
         $path_name = public_path().'/'.$folder_name;

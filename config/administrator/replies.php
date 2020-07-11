@@ -28,11 +28,11 @@ return [
                 return model_link($value, $model->user);
             },
         ],
-        'topic' => [
+        'post' => [
             'title'    => '话题',
             'sortable' => false,
             'output'   => function ($value, $model) {
-                return '<div style="max-width:260px">' . model_admin_link($model->topic->title, $model->topic) . '</div>';
+                return '<div style="max-width:260px">' . model_admin_link($model->post->title, $model->post) . '</div>';
             },
         ],
         'operation' => [
@@ -49,7 +49,7 @@ return [
             'search_fields'      => array("CONCAT(id, ' ', name)"),
             'options_sort_field' => 'id',
         ],
-        'topic' => [
+        'post' => [
             'title'              => '话题',
             'type'               => 'relationship',
             'name_field'         => 'title',
@@ -71,7 +71,7 @@ return [
             'search_fields'      => array("CONCAT(id, ' ', name)"),
             'options_sort_field' => 'id',
         ],
-        'topic' => [
+        'post' => [
             'title'              => '话题',
             'type'               => 'relationship',
             'name_field'         => 'title',
