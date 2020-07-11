@@ -34,6 +34,9 @@
 
             <a class="nav-link text-dark" href="{{ route('users.show',Auth::user()->id) }}" >个人中心</a>
             <a class="nav-link text-dark" href="{{ route('users.edit',Auth::user()->id) }}" >修改资料</a>
+            @can('manage_contents')
+            <a class="nav-link text-dark" href="{{ route('admin_dashboard') }}" >管理后台</a>
+            @endcan
             <form action="{{ route('logout') }}" method="POST">
               {{ csrf_field() }}
               <button class="dropdown-item" type="submit" >注销</button>

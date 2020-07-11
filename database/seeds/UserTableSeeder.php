@@ -33,7 +33,16 @@ class UserTableSeeder extends Seeder
         User::insert($users);
 
         $user = User::find(1);
-        $user->name = 'test';
+        $user->name = 'master';
         $user->save();
+
+        //用户1给站长角色
+        $user->assignRole('master');
+
+        //用户2给管理员角色
+        $user = User::find(2);
+        $user->name = 'admin';
+        $user->save();
+        $user->assignRole('admin');
     }
 }

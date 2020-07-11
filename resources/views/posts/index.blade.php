@@ -26,6 +26,12 @@
   </div>
 
   <div class="col-md-3">
+    <div class="card text-center mb-5">
+      <div class="card-header">
+        <a href="{{ route('posts.create') }}" class=" nav-pills"><button class="btn btn-primary " style="width: 100%">发帖</button></a>
+      </div>
+    </div>
+
     <div class="card">
       <div class="card-header">
         <h4>活跃用户</h4>

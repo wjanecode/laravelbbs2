@@ -13,6 +13,8 @@ class PostRequest extends Request
             {
                 return [
                     // CREATE ROLES
+                    'title' => 'required',
+                    'body'  => 'required|min:10'
                 ];
             }
             // UPDATE
@@ -36,6 +38,9 @@ class PostRequest extends Request
     {
         return [
             // Validation messages
+            'title.required' => '标题不能为空',
+            'body.required'  => '内容不能为空,不能少于10字符',
+            'body.min'       => '内容不能少于10字符'
         ];
     }
 }
