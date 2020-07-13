@@ -7,6 +7,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <title>@yield('title',config('app.name'))</title>
+  @yield('style')
 
   {{--css样式,mix()会根据webpack.mix.js来配置css的链接,这里主要是为了解决浏览器缓存问题--}}
   <link rel="stylesheet" href="{{ mix('css/app.css') }}">

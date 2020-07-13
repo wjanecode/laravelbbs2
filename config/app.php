@@ -170,6 +170,8 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         //前端debugbar
         Barryvdh\Debugbar\ServiceProvider::class,
+        //解析Markdown
+        Parsedown\Providers\ParsedownServiceProvider::class,
 
         /*
          * Application Service Providers...

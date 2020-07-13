@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Handlers\MarkdownHandler;
+
 class Post extends Model
 {
     protected $fillable = ['title', 'body', 'user_id', 'category_id', 'reply_count', 'view_count', 'last_reply_user_id', 'order', 'excerpt', 'slug'];
@@ -45,6 +47,8 @@ class Post extends Model
         //最新回复,有回复时更新reply_count字段,所以会更新
         return $query->orderBy('updated_at','desc');
     }
+
+
 
 
 }

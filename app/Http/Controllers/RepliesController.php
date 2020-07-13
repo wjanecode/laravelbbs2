@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Handlers\MarkdownHandler;
 use App\Models\Reply;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -22,6 +23,7 @@ class RepliesController extends Controller
 
     public function show(Reply $reply)
     {
+
         return view('replies.show', compact('reply'));
     }
 

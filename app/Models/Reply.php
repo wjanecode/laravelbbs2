@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Handlers\MarkdownHandler;
+
 class Reply extends Model
 {
     protected $fillable = ['post_id', 'user_id', 'content'];
@@ -16,5 +18,12 @@ class Reply extends Model
 
     public function scopeRecent($query  ) {
         return $query->orderBy('created_at','desc');
+    }
+
+
+    public function getContentAttribute($value  ) {
+        $convert = new MarkdownHandler();
+        $value = $convert->convertMarkdownToHtml($value);
+        return $value;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Handlers\MarkdownHandler;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -26,6 +27,9 @@ class PostsController extends Controller
 
     public function show(Post $post)
     {
+        $convert = new MarkdownHandler();
+        $post->body = $convert->convertMarkdownToHtml($post->body);
+
         return view('posts.show', compact('post'));
     }
 

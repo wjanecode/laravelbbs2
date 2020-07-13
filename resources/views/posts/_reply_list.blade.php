@@ -2,13 +2,13 @@
 
   @foreach($replies as $reply)
     <li class="media list">
-      <div class="media-left">
+      <div class="media-left mr-2">
         <a href="{{ route('users.show',[$reply->user->id,'tab'=>'reply']) }}">
           <img class="media-object list-avatar" src="{{ asset($reply->user->avatar) }}"  alt="">
         </a>
       </div>
       <div class="media-body">
-        <h5 class="media-heading ml-2">
+        <h5 class="media-heading">
           <a href="{{ route('users.show',[$reply->user->id,'tab'=>'reply']) }}">{{ $reply->user->name }}</a> 于{{ $reply->created_at->diffForHumans() }}说:
         </h5>
         {{--删除回复,判断权限--}}
@@ -20,7 +20,7 @@
           </form>
         @endcan
 
-        <p class="ml-2">
+        <p class="">
 
           {!! $reply->content !!}
         </p>
