@@ -13,14 +13,17 @@ class ReplyRequest extends Request
             {
                 return [
                     // CREATE ROLES
+                    'content' => 'required'
                 ];
             }
             // UPDATE
             case 'PUT':
+
             case 'PATCH':
             {
                 return [
-                    // UPDATE ROLES
+                    // CREATE ROLES
+                    'content' => 'required'
                 ];
             }
             case 'GET':
@@ -36,6 +39,7 @@ class ReplyRequest extends Request
     {
         return [
             // Validation messages
+            'comtent.required' => '不能为空'
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
@@ -20,11 +21,11 @@ class CategoriesController extends Controller
 		return view('categories.index', compact('categories'));
 	}
 
-    public function show(Category $category)
+    public function show(Category $category,User $user)
     {
-
+        $active_users = $user->addActiveUser();
         $posts = $category->posts()->with('user','category')->withOrder(\request('order',''))->paginate(10);
-        return view('posts.index', compact('category','posts'));
+        return view('posts.index', compact('category','posts','active_users'));
     }
 
 	public function create(Category $category)

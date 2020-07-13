@@ -12,8 +12,8 @@
         <a href="{{ route('posts.show',$post->id) }}" class="float-right"><span class="badge badge-pill">0</span></a>
       </h4>
       <p>
-        <a href="xx" class="mr-3 ml-3 fa-link ">{{ $post->category->name }}</a> -
-        <a href="xx" class="mr-3 ml-3 fa-link ">最后活跃于:{{ $post->updated_at->diffForHumans() }}</a> -
+        <a href="{{route('categories.show',$post->category->id)}}" class="mr-3 ml-3 fa-link ">{{ $post->category->name }}</a> -
+        <a href="" class="mr-3 ml-3 fa-link ">最后活跃于:{{ $post->updated_at->diffForHumans() }}</a> -
       </p>
 
     </div>

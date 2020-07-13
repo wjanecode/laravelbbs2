@@ -48,6 +48,11 @@ class Post extends Model
         return $query->orderBy('updated_at','desc');
     }
 
+    public function getBodyAttribute($value  ) {
+        $convert = new MarkdownHandler();
+        $value = $convert->convertMarkdownToHtml($value);
+        return $value;
+    }
 
 
 

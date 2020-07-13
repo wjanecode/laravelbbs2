@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Auth;
 use mysql_xdevapi\Session;
+use App\Models\User;
 
 class PostsController extends Controller
 {
@@ -18,11 +19,12 @@ class PostsController extends Controller
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
-	public function index()
+	public function index(User $user)
 	{
 
+        $active_users = $user->addActiveUser();
 		$posts = Post::with('user','category')->withOrder(request('order',''))->paginate();
-		return view('posts.index', compact('posts'));
+		return view('posts.index', compact('posts','active_users'));
 	}
 
     public function show(Post $post)

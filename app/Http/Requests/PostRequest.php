@@ -22,7 +22,9 @@ class PostRequest extends Request
             case 'PATCH':
             {
                 return [
-                    // UPDATE ROLES
+                    // CREATE ROLES
+                    'title' => 'required',
+                    'body'  => 'required|min:10'
                 ];
             }
             case 'GET':

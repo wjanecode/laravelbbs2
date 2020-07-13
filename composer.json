@@ -20,6 +20,7 @@
         "league/html-to-markdown": "^4.10",
         "mews/captcha": "~3.0",
         "parsedown/laravel": "^1.2",
+        "predis/predis": "^1.1",
         "spatie/laravel-permission": "^3.13",
         "summerblue/administrator": "6.*",
         "summerblue/laravel-active": "6.*",
