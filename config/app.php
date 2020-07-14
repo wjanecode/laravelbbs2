@@ -172,6 +172,9 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         //解析Markdown
         Parsedown\Providers\ParsedownServiceProvider::class,
+        iBrand\Sms\ServiceProvider::class,
+        //passport api登录认证
+        Laravel\Passport\PassportServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -233,6 +236,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Sms'=> iBrand\Sms\Facade::class,
+
 
     ],
 

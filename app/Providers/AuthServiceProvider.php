@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Laravel\Passport\Passport;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -35,6 +37,14 @@ class AuthServiceProvider extends ServiceProvider
             // 动态返回模型对应的策略名称，如：// 'App\Model\User' => 'App\Policies\UserPolicy',
             return 'App\Policies\\'.class_basename($modelClass).'Policy';
         });
+
+        // 会注册一些在访问令牌、客户端、私人访问令牌的发放和吊销过程中会用到的必要路由
+        Passport::routes();
+
+        // accessToken有效期
+        Passport::tokensExpireIn(Carbon::now()->addDays(15));
+        // accessRefushToken刷新令牌有效期
+        Passport::refreshTokensExpireIn(Carbon::now()->addDays(60));
     }
 
 }

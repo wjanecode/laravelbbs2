@@ -17,6 +17,7 @@
         "ibrand/laravel-sms": "~1.0",
         "intervention/image": "^2.5",
         "laravel/framework": "^6.2",
+        "laravel/passport": "^9.3",
         "laravel/tinker": "^2.0",
         "league/html-to-markdown": "^4.10",
         "mews/captcha": "~3.0",
