@@ -27,6 +27,9 @@ Route::prefix('v1')->namespace('Api')->group(function (){
         //注册登录
         Route::post('registerOrLogin','UserController@registerOrLogin')
              ->name('api.login');
+        //图片验证码
+        Route::post('captcha', 'CaptchaController@store')
+             ->name('captcha.store');
     });
 
     Route::middleware('throttle:'.config('throttle.rate_limit.access'))->group(function (){
