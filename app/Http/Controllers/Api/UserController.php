@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\UserRequest;
 use App\Models\User;
+use App\Notifications\UserRegisteredBySms;
 use iBrand\Sms\Sms;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,10 +41,14 @@ class UserController extends ApiController
                     'name' => 'bbs'.Str::random(10),
                     'email'=> Str::random(8).'@'.Str::random(3).'.'.Str::random(3),
                     'phone'=> $phone,
-                    'password' => Hash::make(Str::random(8))
-
+                    'password' => Hash::make(Str::random(8)),
+                    'email_verified_at' => now()->toDateTimeString(),
                 ];
                 $user = User::create($data);
+
+                //通知用户修改信息
+                $user->notify( new UserRegisteredBySms($user));
+
                 $result['token'] = $user->createToken('login')->accessToken;
                 $result['name'] = $user->name;
                 return response()->json(['result'=>$result],200);

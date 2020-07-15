@@ -19,10 +19,20 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::prefix('v1')->namespace('Api')->group(function (){
-    Route::post('verificationCodes','VerificationCodesController@send')
-         ->name('verificationCodes.send');
-    Route::post('registerOrLogin','UserController@registerOrLogin')
-        ->name('api.login');
+
+    Route::middleware('throttle:'.config('throttle.rate_limit.register_or_login'))->group(function (){
+        //发送短信
+        Route::post('verificationCodes','VerificationCodesController@send')
+             ->name('verificationCodes.send');
+        //注册登录
+        Route::post('registerOrLogin','UserController@registerOrLogin')
+             ->name('api.login');
+    });
+
+    Route::middleware('throttle:'.config('throttle.rate_limit.access'))->group(function (){
+
+    });
+
 });
 
 

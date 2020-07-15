@@ -52,7 +52,7 @@ class VerificationCodesController extends ApiController
         }
 
         //发送失败
-        return \response()->json(['message'=>'服务出错,短信发送失败,稍后再试'])->setStatusCode(500);
+        return \response()->json(['message'=>'请求次数过多,稍后再试'])->setStatusCode(500);
     }
 
     public function verify(Request $request) {
