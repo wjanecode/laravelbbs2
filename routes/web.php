@@ -43,3 +43,6 @@ Route::resource('categories', 'CategoriesController', ['only' => ['index', 'show
 Route::resource('replies', 'RepliesController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
 
 Route::resource('notifications','NotificationsController',['only' => ['index','show']]);
+
+//测试
+Roure::get('test','TestController@index')->name('test.index');
