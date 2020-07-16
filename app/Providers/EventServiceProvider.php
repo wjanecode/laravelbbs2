@@ -26,8 +26,13 @@ class EventServiceProvider extends ServiceProvider
         //邮箱验证成功事件 => EmailVerified提示前端激活成功
         Verified::class => [
             EmailVerified::class
+        ],
 
-        ]
+        //微信登录
+        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+            // add your listeners (aka providers) here
+            'SocialiteProviders\Weixin\WeixinExtendSocialite@handle'
+        ],
 
 
     ];
