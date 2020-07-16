@@ -45,4 +45,4 @@ Route::resource('replies', 'RepliesController', ['only' => ['index', 'show', 'cr
 Route::resource('notifications','NotificationsController',['only' => ['index','show']]);
 
 //测试
-Roure::get('test','TestController@index')->name('test.index');
+Route::get('test','TestController@index')->name('test.index');
