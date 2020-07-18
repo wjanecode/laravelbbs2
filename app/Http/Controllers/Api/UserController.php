@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends ApiController
 {
     //
-    public function registerOrLogin(UserRequest $request, Sms $sms)
+    public function store(UserRequest $request, Sms $sms)
     {
         $phone = $request->get('phone');
         $code = $request->get('code');

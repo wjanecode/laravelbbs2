@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
 
 /**
@@ -55,12 +56,13 @@ use Spatie\Permission\Traits\HasRoles;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail,JWTSubject
 {
     use Notifiable,\Illuminate\Auth\MustVerifyEmail;
     use HasRoles;
     use ActiveUserTrait;
     use HasApiTokens;
+
 
 
     /**
@@ -69,7 +71,8 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','avatar','introduction','phone','email_verified_at'
+        'name', 'email', 'password','avatar','introduction','phone','email_verified_at',
+        'weixin_openid','weixin_unionid'
     ];
 
     /**
@@ -115,13 +118,16 @@ class User extends Authenticatable implements MustVerifyEmail
     //avatar属性修改器,保存avatar之前都会经过这里处理
     public function setAvatarAttribute( $value ) {
 
-        //如果没有upload/images/avatars路径的就是管理员后台上传的,只保存的basename
+       //网图,直接返回
+        if( strchr($value,'http')){
+            return $this->attributes['avatar'] = $value;
+        }
+        //非网图,如果没有upload/images/avatars路径的就是管理员后台上传的,只保存的basename
         if( ! strchr($value,'upload')){
             //补全地址
             $value = '/upload/images/avatars/'.$value;
         }
-
-        $this->attributes['avatar'] = $value;
+        return $this->attributes['avatar'] = $value;
     }
 
     /**
@@ -140,4 +146,25 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier() {
+        // TODO: Implement getJWTIdentifier() method.
+        //返回主键id
+        return $this->getKey();
+    }
+
+    /**
+     * 需要额外在 JWT 载荷中增加的自定义内容
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims() {
+        // TODO: Implement getJWTCustomClaims() method.
+        return [];
+    }
 }
