@@ -26,9 +26,7 @@ class UserRequest extends BaseFormRequest
     {
         return [
             //
-            'phone' => 'required',
 
-            'code' => 'required'
         ];
     }
 }

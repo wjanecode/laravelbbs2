@@ -30,7 +30,11 @@ class SocialAuthorizationRequest extends FormRequest
                     'code' => 'required',
                 ];
             case 'phone':
-                return [];
+                return [
+                    //
+                    'phone' => 'required',
+                    'code' => 'required'
+                ];
         }
     }
 

@@ -3,16 +3,45 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\AuthorizationRequest;
 use App\Http\Requests\Api\SocialAuthorizationRequest;
 use App\Models\User;
+use App\Notifications\UserRegisteredBySms;
+use iBrand\Sms\Sms;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 
 
 class AuthorizationsController extends Controller
 {
-    //api账密登录
-    public function store(  ) {
+    protected $sms;
+    public function __construct(Sms $sms) {
+        $this->sms = $sms;
+    }
+    //api账密登录 邮箱或者用户名
+    public function store(AuthorizationRequest $request)
+    {
+
+        $account = $request->account;
+        $credential['password'] = $request->password;
+
+        if(filter_var($account,FILTER_VALIDATE_EMAIL)){
+             $credential['email'] = $account;
+        }else{
+             $credential['name'] = $account;
+        }
+
+
+        //这里实现的是 jwt attempt方法,该方法认证成功会返回 token 值,失败返回false
+        if( ! $token = auth('api')->attempt($credential) ) {
+            throw new AuthorizationException('用户名或密码错误');
+        }
+
+        return $this->responseWithToken($token);
+
 
     }
     /**
@@ -27,7 +56,7 @@ class AuthorizationsController extends Controller
         //dd($socials_type);
         //限制第三方登录
         if (!in_array($socials_type, ['weixin','phone'])) {
-            return $this->response->errorBadRequest();
+            return response()->json(['message' => '非法登录']);
         }
         //根据请求调用不同方法
         switch ($socials_type)
@@ -41,6 +70,12 @@ class AuthorizationsController extends Controller
         }
     }
 
+    /**
+     * 微信登录
+     * @param SocialAuthorizationRequest $request
+     *
+     * @return array|\Illuminate\Http\JsonResponse
+     */
     public function weixinStore(SocialAuthorizationRequest $request)
     {
 
@@ -81,12 +116,78 @@ class AuthorizationsController extends Controller
             $user = User::create($data);
         }
 
-        return response()->json($user,201);
+        //获取用户 token,用户 jwt 登录会返回 token
+        $token = auth('api')->login($user);
+
+        //返回 token
+        return $this->responseWithToken($token);
 
     }
 
-    public function phoneStore(  ) {
+    /**
+     * 手机号验证码注册登录
+     * @param SocialAuthorizationRequest $request
+     * @param Sms $sms
+     *
+     * @return array|\Illuminate\Http\JsonResponse
+     */
+    public function phoneStore(SocialAuthorizationRequest $request)
+    {
 
+        $phone = $request->phone;
+        $code = $request->code;
+
+        //验证code是否正确
+
+        if ($this->sms->checkCode($phone,$code)){
+
+            //验证通过
+            //判断用户是否存在
+            //用户存在,返回token
+            //用户不存在,新建用户,然后登录
+            $user = User::where('phone',$phone)->get()->first();
+
+            if ( ! $user)
+            {
+                //用户不存在,新建用户,然后登录
+                $data = [
+                    'name' => 'bbs'.Str::random(10),
+                    'email'=> \Str::random(8).'@'.\Str::random(3).'.'.\Str::random(3),
+                    'phone'=> $phone,
+                    'password' => Hash::make(Str::random(8)),
+                    'email_verified_at' => now()->toDateTimeString(),
+                ];
+                $user = User::create($data);
+
+                //通知用户修改信息
+                $user->notify( new UserRegisteredBySms($user));
+            }
+
+            $token = auth('api')->login($user);
+
+            //返回 token
+            return $this->responseWithToken($token);
+
+        }else{
+            return response()->json(['message' => '验证码错误或已过期'])->setStatusCode(401);
+        }
+    }
+
+    /**
+     * 返回token数据
+     * @param $token
+     *
+     * @return array
+     */
+    public function responseWithToken( $token ) {
+        return response()->json([
+            //token
+            'access_token' => $token,
+            //token 类型
+            'token_type'   => 'Bearer',
+            //过期时间
+            'expired_at'   => auth('api')->factory()->getTTL() * 60
+        ],201);
     }
 
 }
