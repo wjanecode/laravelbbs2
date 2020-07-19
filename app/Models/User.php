@@ -81,7 +81,7 @@ class User extends Authenticatable implements MustVerifyEmail,JWTSubject
      * @var array
      */
     protected $hidden = [
-        'remember_token',
+        'remember_token','password','weixin_openid','weixin_unionid'
     ];
 
     /**
@@ -167,4 +167,6 @@ class User extends Authenticatable implements MustVerifyEmail,JWTSubject
         // TODO: Implement getJWTCustomClaims() method.
         return [];
     }
+
+
 }

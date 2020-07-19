@@ -189,7 +189,8 @@ class AuthorizationsController extends Controller
         ],201);
     }
 
-    public function update(  ) {
+    public function update(Request $request) {
+
         $token = auth('api')->refresh();
         return $this->responseWithToken($token);
     }

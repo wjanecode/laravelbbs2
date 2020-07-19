@@ -45,12 +45,13 @@ class ImageUploadHandler{
         //拼接文件名
         $filename = $file_prefix.'-'.date('H-i-s').random_int(1000,9999).'.'.$extension;
 
+        //检查是否在允许上传范围
         if (! in_array($extension,$this->allow_ext)){
             return false;
         }
 
         //保存文件
-        $file->move($folder_name,$path_name.'/'.$filename);
+        $file->move($path_name,$filename);
 
         // 如果限制了图片宽度，就进行裁剪
         if ($max_width && $extension != 'gif') {

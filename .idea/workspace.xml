@@ -3,7 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="0b9b73f6-3a87-4fbb-85d6-e4fa506044ea" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Handlers/ImageUploadHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Handlers/ImageUploadHandler.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthorizationsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthorizationsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/UserController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Api/UserRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Api/UserRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -190,13 +194,13 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Program\www\laravelbbs2\app\Models" />
+      <recent name="D:\Program\www\laravelbbs2\app\Http\Requests\Api" />
+      <recent name="D:\Program\www\laravelbbs2\resources\lang" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Program\www\laravelbbs2\database\migrations" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Program\www\laravelbbs2\app\Http\Requests\Api" />
-      <recent name="D:\Program\www\laravelbbs2\app\Models" />
-      <recent name="D:\Program\www\laravelbbs2\resources\lang" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -235,7 +239,7 @@
       <workItem from="1594622125176" duration="50000" />
       <workItem from="1594622208445" duration="11139000" />
       <workItem from="1594680417081" duration="77510000" />
-      <workItem from="1595129243079" duration="5129000" />
+      <workItem from="1595129243079" duration="17626000" />
     </task>
     <servers />
   </component>

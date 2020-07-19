@@ -20,8 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::prefix('v1')->namespace('Api')->group(function (){
 
+    //登录相关
     Route::middleware('throttle:'.config('throttle.rate_limit.register_or_login'))->group(function (){
-
 
         //图片验证码,需要手机号
         Route::post('captcha', 'CaptchaController@store')
@@ -51,9 +51,30 @@ Route::prefix('v1')->namespace('Api')->group(function (){
         //删除 token
         Route::delete('authorizations/current','AuthorizationsController@delete')
             ->name('api.authorizations.destroy');
-
-
     });
+
+    //用户信息
+    Route::middleware('throttle:' . config('throttle.rate_limit.access'))->group(function () {
+
+        // 游客可以访问的接口
+         // 某个用户的详情
+         Route::get('users/{user}', 'UsersController@show')
+              ->name('api.users.show');
+
+         // 登录后可以访问的接口
+         Route::middleware('auth:api')->group(function() {
+             // 当前登录用户信息
+             Route::get('user', 'UsersController@me')
+                  ->name('api.user.show');
+             // 编辑登录用户信息
+             Route::patch('user', 'UsersController@update')
+                  ->name('user.update');
+             //上传个人图片
+             Route::post('images','ImagesController@store')
+                 ->name('api.images.store');
+
+         });
+     });
 
     Route::middleware('throttle:'.config('throttle.rate_limit.access'))->group(function (){
 
