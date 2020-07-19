@@ -21,6 +21,7 @@ class AuthorizationsController extends Controller
     public function __construct(Sms $sms) {
         $this->sms = $sms;
     }
+
     //api账密登录 邮箱或者用户名
     public function store(AuthorizationRequest $request)
     {
@@ -41,8 +42,6 @@ class AuthorizationsController extends Controller
         }
 
         return $this->responseWithToken($token);
-
-
     }
     /**
      * 第三方登录
@@ -185,9 +184,19 @@ class AuthorizationsController extends Controller
             'access_token' => $token,
             //token 类型
             'token_type'   => 'Bearer',
-            //过期时间
+            //过期时间,有个默认的时间
             'expired_at'   => auth('api')->factory()->getTTL() * 60
         ],201);
+    }
+
+    public function update(  ) {
+        $token = auth('api')->refresh();
+        return $this->responseWithToken($token);
+    }
+
+    public function destroy() {
+        auth('api')->logout();
+        return response()->json(null,204);
     }
 
 }

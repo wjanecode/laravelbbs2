@@ -44,6 +44,14 @@ Route::prefix('v1')->namespace('Api')->group(function (){
         Route::post('phone/authorizations','AuthorizationsController@socialsStore')
              ->name('api.phone.authorizations.store');
 
+        //刷新 token
+        Route::put('authorizations/current','AuthorizationsController@update')
+            ->name('api.authorizations.update');
+
+        //删除 token
+        Route::delete('authorizations/current','AuthorizationsController@delete')
+            ->name('api.authorizations.destroy');
+
 
     });
 
