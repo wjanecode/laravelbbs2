@@ -22,7 +22,7 @@ class RepliesController extends Controller
         //
         $replies = QueryBuilder::for(Reply::class)
             //url 关联
-            ->allowedIncludes('user','post','post.user')
+            ->allowedIncludes('user','post','post.user','user.roles')
             //url 过滤
             ->allowedFilters([
                 //根据内容模糊搜索

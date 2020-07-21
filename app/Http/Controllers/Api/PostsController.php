@@ -73,12 +73,13 @@ class PostsController extends Controller
         $posts = QueryBuilder::for(Post::class)
             //?include=user,category
             //关联模型
-            ->allowedIncludes('user','category')
+            ->allowedIncludes('user','category','user.roles','replies')
             //?filter[title]=xxx&filter[category_id]=1&filter[withOrder]=xxxx
             //过滤字段,默认模糊搜索,exact()精确搜索,scope()范围,可以定义默认值,
             ->allowedFilters([
                 'title',
                 AllowedFilter::exact('category_id'),
+                AllowedFilter::exact('user_id'),
                 AllowedFilter::scope('withOrder')
             ])
             ->paginate(10);
@@ -107,7 +108,7 @@ class PostsController extends Controller
     public function show($id) {
 
         $post = QueryBuilder::for(Post::class)
-            ->allowedIncludes('user','category')
+            ->allowedIncludes('user','category','user.roles','replies')
             ->findOrFail($id);
 
         return new PostResource($post);

@@ -21,8 +21,9 @@ class UserResource extends JsonResource
         $data['avatar'] = asset($this->resource->avatar);
 
         //数据关联
-        $data['post'] = new PostResource($this->whenLoaded('post'));
+        $data['posts'] = new PostResource($this->whenLoaded('posts'));
         $data['replies'] = new ReplyResource($this->whenLoaded('replies'));
+        $data['roles'] = new RoleResource($this->whenLoaded('roles'));
 
         return $data;
     }

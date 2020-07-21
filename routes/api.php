@@ -99,6 +99,9 @@ Route::prefix('v1')->namespace('Api')->group(function (){
              Route::patch('user/read/notifications','NotificationsController@markAllAsRead')->name('api.notifications.markAllAsRead');
              //标记一条未读消息为已读
              Route::patch('user/read/notifications/{notification}','NotificationsController@markOneAsRead')->name('api.notifications.markOneAsRead');
+
+             //用户权限
+             Route::get('user/permissions','PermissionsController@index')->name('api.permissions.index');
          });
      });
 
