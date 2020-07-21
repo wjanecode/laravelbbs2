@@ -12,22 +12,6 @@ use Tests\Traits\JWTToken;
 
 class PostTest extends Base
 {
-
-
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function testExample()
-    {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
-    }
-
-
-
     //测试新建帖子
     public function testPostStore(  ) {
 
@@ -80,7 +64,6 @@ class PostTest extends Base
         //断言
         $response->assertStatus(200)
             ->assertJsonFragment($assertData);
-
     }
 
     //测试删除
@@ -94,7 +77,6 @@ class PostTest extends Base
         //确认是否已删除
         $response = $this->json('GET','api/v1/posts/' . $post->id);
         $response->assertStatus(404);
-
     }
 
     //创建一个帖子
