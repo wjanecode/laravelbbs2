@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\User;
 use Illuminate\Console\Command;
 
 class CalculateActiveUser extends Command
@@ -18,7 +19,7 @@ class CalculateActiveUser extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = '计算活跃用户';
 
     /**
      * Create a new command instance.
@@ -38,6 +39,8 @@ class CalculateActiveUser extends Command
     public function handle()
     {
         //
-
+        $user = new User();
+        $user->calculateAndCacheActiveUsers();
+        $this->info('活跃用户计算完毕');
     }
 }

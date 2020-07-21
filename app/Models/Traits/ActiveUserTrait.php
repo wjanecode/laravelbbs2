@@ -16,9 +16,9 @@ trait ActiveUserTrait
     protected $users = [];
 
     protected $post_weight = 4;//帖子权重
-    protected $reply_weight = 1;//回复权重
-    protected $pass_days = 30;//几天内的统计数据
-    protected $user_number = 6;//取出的用户数
+    protected $reply_weight = 2;//回复权重
+    protected $pass_days = 5;//几天内的统计数据
+    protected $user_number = 8;//取出的用户数
 
     //缓存相关配置
     protected $cache_key = 'laravel_bbs_active_user';//key
@@ -37,7 +37,7 @@ trait ActiveUserTrait
     //缓存活跃用户,不返回活跃用户
     public function calculateAndCacheActiveUsers()
     {
-        // 取得活跃用户列表
+        // 计算活跃用户列表
         $active_users = $this->calculateActiveUsers();
         // 并加以缓存
         $this->cacheActiveUsers($active_users);
@@ -76,6 +76,7 @@ trait ActiveUserTrait
     }
 
     private function calculatePostScore(  ) {
+
         // 从话题数据表里取出限定时间范围（$pass_days）内，有发表过话题的用户
         // 并且同时取出用户此段时间内发布话题的数量
         //sql='select user_id, count(*) as post_count form 'posts' where created_at >= Carbon:now()->subDays(7) group by user_id'
@@ -118,5 +119,6 @@ trait ActiveUserTrait
     {
         // 将数据放入缓存中
         Cache::put($this->cache_key, $active_users, $this->cache_expire_in_seconds);
+
     }
 }

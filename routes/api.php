@@ -68,6 +68,9 @@ Route::prefix('v1')->namespace('Api')->group(function (){
          //回复列表,根据url决定是帖子的回复还是用户的回复
          Route::get('replies','RepliesController@index')->name('api.replies.index');
 
+         //活跃用户
+        Route::get('activeUsers','ActiveUsersController@index')->name('api.activeUsers.index');
+
 
 
          //----- 登录后可以访问的接口
