@@ -10,13 +10,10 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use Tests\Traits\JWTToken;
 
-class PostTest extends TestCase
+class PostTest extends Base
 {
-    //要引入这个trait,先刷新一下数据表,不然报错no such table
-    use RefreshDatabase;
-    use JWTToken;//获取用户token,并添加到header
 
-    protected $user;
+
     /**
      * A basic feature test example.
      *
@@ -29,13 +26,7 @@ class PostTest extends TestCase
         $response->assertStatus(200);
     }
 
-    //setUp是父类方法,这里要标明返回值类型,为void,没有返回值
-    public function setUp(  ):void {
-        //调用父类setup(),会在测试之前运行
-        parent::setUp();
-        //创建一个用户来测试
-        $this->user = factory(User::class)->create();
-    }
+
 
     //测试新建帖子
     public function testPostStore(  ) {
