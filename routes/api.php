@@ -56,23 +56,33 @@ Route::prefix('v1')->namespace('Api')->group(function (){
     //用户信息
     Route::middleware('throttle:' . config('throttle.rate_limit.access'))->group(function () {
 
-        // 游客可以访问的接口
+         //----- 游客可以访问的接口
          // 某个用户的详情
-         Route::get('users/{user}', 'UsersController@show')
-              ->name('api.users.show');
+         Route::get('users/{user}', 'UsersController@show')->name('api.users.show');
+         //帖子相关
+         Route::get('categories','CategoriesController@index')->name('api.categories.index');
+         Route::get('posts','PostsController@index')->name('api.posts.index');
+         Route::get('posts/{post}','PostsController@show')->name('api.posts.show');
 
-         // 登录后可以访问的接口
+         //
+
+
+
+         //----- 登录后可以访问的接口
          Route::middleware('auth:api')->group(function() {
              // 当前登录用户信息
-             Route::get('user', 'UsersController@me')
-                  ->name('api.user.show');
+             Route::get('user', 'UsersController@me')->name('api.user.show');
              // 编辑登录用户信息
-             Route::patch('user', 'UsersController@update')
-                  ->name('user.update');
+             Route::patch('user', 'UsersController@update')->name('user.update');
              //上传个人图片
-             Route::post('images','ImagesController@store')
-                 ->name('api.images.store');
+             Route::post('images','ImagesController@store')->name('api.images.store');
 
+             //发布帖子
+             Route::post('posts','PostsController@store')->name('api.posts.store');
+             //更新帖子
+             Route::patch('posts/{post}','PostsController@update')->name('api.posts.update');
+             //删除帖子
+             Route::delete('posts/{post}','PostsController@destroy')->name('api.posts.destroy');
          });
      });
 

@@ -12,10 +12,15 @@ use Illuminate\Http\Request;
 
 class ImagesController extends Controller
 {
-    //
+    /**
+     * 保存图片
+     * @param ImagesRequest $request
+     * @param ImageUploadHandler $handler
+     *
+     * @return ImageResource|\Illuminate\Http\JsonResponse
+     */
     public function store(ImagesRequest $request,ImageUploadHandler $handler) {
 
-        //dd('s');
         //dd($request->type);
         if ($file = $request->file('image') )
         {
@@ -31,8 +36,7 @@ class ImagesController extends Controller
             return new ImageResource($image);
         }
 
-        return response()->json(['message'=>'没有选择图片',404]);
-
+        return response()->json(['message'=>'没有上传图片,请重试',404]);
     }
 
 
