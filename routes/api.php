@@ -93,6 +93,12 @@ Route::prefix('v1')->namespace('Api')->group(function (){
 
              //消息通知
              Route::get('notifications','NotificationsController@index')->name('api.notifications.index');
+             //获取未读通知数量统计
+             Route::get('notifications/statistic','NotificationsController@unreadStatistic')->name('api.notifications.unreadStatistic');
+             //标记所有未读通知为已读
+             Route::patch('user/read/notifications','NotificationsController@markAllAsRead')->name('api.notifications.markAllAsRead');
+             //标记一条未读消息为已读
+             Route::patch('user/read/notifications/{notification}','NotificationsController@markOneAsRead')->name('api.notifications.markOneAsRead');
          });
      });
 

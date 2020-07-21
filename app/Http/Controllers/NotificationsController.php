@@ -16,11 +16,11 @@ class NotificationsController extends Controller
     {
         //
         $user = Auth::user();
+        //所有通知
         $notifications = $user->notifications()->paginate(10);
 
+        //未读通知
         $unreadNotifications = $user->unreadNotifications()->paginate(10);
-
-
 
         return view('notifications.index',compact('unreadNotifications','notifications','user'));
     }

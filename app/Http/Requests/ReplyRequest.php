@@ -14,8 +14,7 @@ class ReplyRequest extends Request
                 return [
                     // CREATE ROLES
                     'content' => 'required',
-                    'post_id' => 'required|exists:posts,id',
-                    'user_id' => 'required||exists:users.id'
+
                 ];
             }
             // UPDATE
@@ -27,7 +26,7 @@ class ReplyRequest extends Request
                     // CREATE ROLES
                     'content' => 'required',
                     'post_id' => 'required|exists:posts,id',
-                    'user_id' => 'required|exists:users.id'
+                    'user_id' => 'required|exists:users,id'
                 ];
             }
             case 'GET':

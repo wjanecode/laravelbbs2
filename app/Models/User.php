@@ -168,5 +168,22 @@ class User extends Authenticatable implements MustVerifyEmail,JWTSubject
         return [];
     }
 
+    //未读通知+1
+    public function plusNotifications(  ) {
+        $this->increment('notification_count');
+        $this->save();
+    }
+
+    //全部未读消息清零
+    public function markAsRead(  ) {
+        //统计数清零
+        $this->notification_count = 0;
+        $this->save();
+        //标记关联的通知为read
+        $this->unreadNotifications->markAsRead();
+    }
+
+
+
 
 }

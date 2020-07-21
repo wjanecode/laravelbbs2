@@ -63,11 +63,11 @@ class Post extends Model
         return $this->hasMany(Reply::class,'post_id');
     }
 
+    //排序
     public function scopeWithOrder($query,$order) {
 
         //根据不同order来分配不同排序
         //调用时直接使用withOrder($order)
-
         switch ($order){
             //最新发布
             case 'recentPublish':
@@ -86,17 +86,18 @@ class Post extends Model
 
     }
 
+    //最新回复,有回复时更新reply_count字段,所以会更新
     public function scopeRecentReply( $query ) {
         //最新回复,有回复时更新reply_count字段,所以会更新
         return $query->orderBy('updated_at','desc');
     }
 
+    //属性访问器,转换 Markdown to HTML
     public function getBodyAttribute($value  ) {
         $convert = new MarkdownHandler();
         $value = $convert->convertMarkdownToHtml($value);
         return $value;
     }
-
 
 
 }

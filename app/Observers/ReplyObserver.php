@@ -23,10 +23,13 @@ class ReplyObserver
     public function saved( Reply $reply ) {
 
         $author = $reply->post->user;
+
         //给文章作者发送回复通知
-        //排除本人回复
+        //排除自己给自己的回复
         if( $reply->user_id != $author->id){
             $author->notify(new PostReplied($reply));
+            //未读通知+1
+            $author->plusNotifications();
         }
 
         //更新帖子时间
