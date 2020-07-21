@@ -14,10 +14,22 @@ class PostResource extends JsonResource
      */
     public function toArray($request)
     {
-        $data = parent::toArray($request);
+        $data = [
+            'id'    =>$this->id,
+            'title' => $this->title,
+            'body'  => $this->body,
+            'user_id' => $this->user_id,
+            'category_id' => $this->category_id,
+            'reply_count' => $this->reply_count,
+            'view_count'  => $this->view_count,
+            'created_at'  => $this->created_at,
+            'updated_at'  => $this->updated_at
+        ];
+
+
         $data['user'] = new UserResource($this->whenLoaded('user'));
         $data['category'] = new CategoryResource($this->whenLoaded('category'));
-        //$data['replies'] = new ReplyResource($this->whenLoaded('replies'));
+        $data['replies'] = new ReplyResource($this->whenLoaded('replies'));
 
         return $data;
     }

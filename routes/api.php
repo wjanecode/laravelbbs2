@@ -64,7 +64,9 @@ Route::prefix('v1')->namespace('Api')->group(function (){
          Route::get('posts','PostsController@index')->name('api.posts.index');
          Route::get('posts/{post}','PostsController@show')->name('api.posts.show');
 
-         //
+         //回复相关
+         //回复列表,根据url决定是帖子的回复还是用户的回复
+         Route::get('replies','RepliesController@index')->name('api.replies.index');
 
 
 
@@ -83,6 +85,14 @@ Route::prefix('v1')->namespace('Api')->group(function (){
              Route::patch('posts/{post}','PostsController@update')->name('api.posts.update');
              //删除帖子
              Route::delete('posts/{post}','PostsController@destroy')->name('api.posts.destroy');
+
+             //回复帖子
+             Route::post('replies','RepliesController@store')->name('api.replies.store');
+             //删除回复
+             Route::delete('replies/{reply}','RepliesController@destroy')->name('api.replies.destroy');
+
+             //消息通知
+             Route::get('notifications','NotificationsController@index')->name('api.notifications.index');
          });
      });
 
