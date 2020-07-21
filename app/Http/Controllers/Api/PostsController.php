@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
-class PostsController extends Controller
+class PostsController extends ApiController
 {
     /**
      * 新建帖子
@@ -21,6 +21,7 @@ class PostsController extends Controller
     public function store(PostRequest $request) {
 
         $user_id = $request->user()->id;
+
         $data = $request->only('title','body','category_id');
         $data['user_id'] = $user_id;
         $post = Post::create($data);

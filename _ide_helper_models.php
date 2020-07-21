@@ -38,6 +38,30 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Image
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property string|null $type
+ * @property string $path
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image wherePath($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Image whereUserId($value)
+ */
+	class Image extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Model
  *
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Model newModelQuery()
@@ -170,14 +194,14 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
  * @mixin \Eloquent
  * @property string|null $weixin_openid
- * @property string|null $weinxin_unionid
+ * @property string|null $weixin_unionid
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Client[] $clients
  * @property-read int|null $clients_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
  * @property-read int|null $tokens_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereWeinxinUnionid($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereWeixinOpenid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereWeixinUnionid($value)
  */
-	class User extends \Eloquent implements \Illuminate\Contracts\Auth\MustVerifyEmail {}
+	class User extends \Eloquent implements \Illuminate\Contracts\Auth\MustVerifyEmail, \Tymon\JWTAuth\Contracts\JWTSubject {}
 }
 

@@ -7,7 +7,7 @@ use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
-class CategoriesController extends Controller
+class CategoriesController extends ApiController
 {
     /**
      * 返回分类列表,被 data 包围

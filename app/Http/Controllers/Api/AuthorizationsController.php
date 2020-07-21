@@ -15,7 +15,7 @@ use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 
 
-class AuthorizationsController extends Controller
+class AuthorizationsController extends ApiController
 {
     protected $sms;
     public function __construct(Sms $sms) {
@@ -38,7 +38,7 @@ class AuthorizationsController extends Controller
 
         //这里实现的是 jwt attempt方法,该方法认证成功会返回 token 值,失败返回false
         if( ! $token = auth('api')->attempt($credential) ) {
-            throw new AuthorizationException('用户名或密码错误');
+            return $this->errorResponse(403,'用户名或密码错误',1003);
         }
 
         return $this->responseWithToken($token);
@@ -101,7 +101,7 @@ class AuthorizationsController extends Controller
 
         if($user) {
             //用户存在,登录
-            return response()->json($user,201);
+            return response()->json($user,200);
         }else{
 
             //注册
@@ -168,7 +168,7 @@ class AuthorizationsController extends Controller
             return $this->responseWithToken($token);
 
         }else{
-            return response()->json(['message' => '验证码错误或已过期'])->setStatusCode(401);
+            return $this->errorResponse(403,'验证码不正确或已过期',1004);
         }
     }
 

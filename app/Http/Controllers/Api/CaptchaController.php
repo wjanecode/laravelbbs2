@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 
-class CaptchaController extends Controller
+class CaptchaController extends ApiController
 {
     //
     public function store( CaptchaRequest $request )
@@ -31,7 +31,7 @@ class CaptchaController extends Controller
         Cache::put($key,['phone' => $phone, 'code' => $captcha->getPhrase()],$expired_at);
 
         //-------调试
-        var_dump(Cache::get($key));
+        //var_dump(Cache::get($key));
 
         //返回验证码和key,过期时间
         $result = [
@@ -40,6 +40,6 @@ class CaptchaController extends Controller
             'expired_at' => $expired_at,
         ];
 
-        return response()->json($result,201);
+        return response()->json($result,200);
     }
 }

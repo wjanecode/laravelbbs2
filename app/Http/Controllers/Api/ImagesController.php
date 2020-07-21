@@ -10,7 +10,7 @@ use App\Models\Image;
 use http\Env\Response;
 use Illuminate\Http\Request;
 
-class ImagesController extends Controller
+class ImagesController extends ApiController
 {
     /**
      * 保存图片

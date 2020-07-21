@@ -9,7 +9,7 @@ use App\Models\Image;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class UsersController extends Controller
+class UsersController extends ApiController
 {
     //
     public function __construct(  ) {

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Notification;
 
-class NotificationsController extends Controller
+class NotificationsController extends ApiController
 {
     //
     public function index(Request $request ) {

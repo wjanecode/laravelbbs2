@@ -8,7 +8,7 @@ use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class ActiveUsersController extends Controller
+class ActiveUsersController extends ApiController
 {
     //
     public function index(User $user) {

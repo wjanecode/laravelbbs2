@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
-class RepliesController extends Controller
+class RepliesController extends ApiController
 {
     /**
      * Display a listing of the resource.

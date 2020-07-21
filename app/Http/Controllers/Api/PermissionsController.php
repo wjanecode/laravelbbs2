@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\PermissionResource;
 use Illuminate\Http\Request;
 
-class PermissionsController extends Controller
+class PermissionsController extends ApiController
 {
     //获取用户所有权限
     public function index( Request $request ) {
